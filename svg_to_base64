@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#bash encoding url
+#http://stackoverflow.com/questions/16918602/how-to-base64-encode-image-in-linux-bash-shell
+
+#copy to clipboard url
+#https://coderwall.com/p/pmduxw/copy-files-to-clipboard-in-windows-git-bash
+
+echo "enter the path to the svg file (full or relative - include the extension):"
+read svg_file_path
+
+#cat $svg_file_path | openssl base64 | tr -d '\n' | /dev/clipboard
+new_base=$(cat $svg_file_path | base64 -w 0)
+echo "data:image/svg+xml;base64,"$new_base > /dev/clipboard
+echo "data:image/svg+xml;base64,"$new_base > temp_svg_data
+echo "data copied to the clipboard"
